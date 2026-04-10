@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Mapa</title>
+
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+        <script type="module" src="./index.js"></script>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6myHzS10YXdcazAFalmXvDkrYCp5cLc8&libraries=maps,marker&v=weekly&internal_usage_attribution_ids=gmp_git_jsapisamples_v1_web-components"
+            defer></script>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <gmp-map
+                    center="37.4220656,-122.0840897"
+                    zoom="10"
+                    map-id="DEMO_MAP_ID"
+                    style="height: 500px"></gmp-map>
+            </div>
+            <div class="row">
+                
+                <div class="col-md-4">
+                     <br>
+                 <label>Raio</label>&nbsp;&nbsp;<input type="Text" placeholder="Digite o raio de Busca" required>
+                 </div>
+                 <div class="col-md-4">
+            
+</div>
+     <div class="col-md-4">
+         <br>
+            <input type="button" value="Buscar">
+</div>
+            </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
