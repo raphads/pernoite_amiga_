@@ -24,9 +24,10 @@
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav class="sidebar" id="sidebar">
         <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="maps.html">Mapa</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
+            <li><button><a href="index.html">Início</a></button></li>
+            <li><button><a href="maps.html">Mapa <img class="icone" src="images/map (1)l.png"></a></button></li>
+            <li><button><a href="add_posto.html">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
+            
             
         </ul>
     </nav>
@@ -36,8 +37,10 @@
             <input type="email" placeholder="Digite seu Email" required><br><br>
             <label>Senha</label><br>
             <input type="password" placeholder="***" required><br><br>
-            <input type="button" value="Entrar">
-        </form>
+            <input type="button" value="Entrar" id="botao">
+        </form><br>
+        <label>Não tem uma Conta?</label><br>
+        <a href="cadastro.html" style="color: #F97316;">Cadastre-se</a>
         </div>
 
     <div class="col-md-9">
