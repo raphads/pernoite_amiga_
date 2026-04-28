@@ -1,9 +1,15 @@
-.container {
+.container-fluid {
     background-color: #1e3a5f;
     color: #ffffff;
+    
 }
 
-
+body{
+    background-color: #1e3a5f;
+    border: #1e3a5f;
+    margin: 0%;
+    background: none;
+}
 
 .menu-icon {
     font-size: 30px;
@@ -12,8 +18,8 @@
 
 .sidebar {
     position: absolute;
-    left: 0;
-    top: 100px;
+    left: 5px;
+    top: 50px;
     width: 250px;
     height: 100%;
     background-color: #1e3a5f;
@@ -97,4 +103,16 @@ button:hover{
     border-color: #ffffff;
     background-color: #1e3a5f;
     color: #ffffff;
+}
+
+html{
+    user-select: none;
+}
+
+img{
+    image-rendering: auto;
+}
+
+input, textarea{
+    border-radius: 10px;
 }
