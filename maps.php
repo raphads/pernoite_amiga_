@@ -1,7 +1,9 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
         <title>Mapa</title>
-
+        <link rel="icon" href="images/iconlogo.png">
         <link rel="stylesheet" type="text/css" href="./style.css" />
         <script type="module" src="./index.js"></script>
         <script
@@ -13,11 +15,7 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <gmp-map
-                    center="37.4220656,-122.0840897"
-                    zoom="10"
-                    map-id="DEMO_MAP_ID"
-                    style="height: 500px"></gmp-map>
+               
             </div>
             <div class="row">
                 
