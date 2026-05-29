@@ -24,24 +24,24 @@
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav class="sidebar" id="sidebar">
         <ul>
-             <li><button><a href="index.html">Início</a></button></li>
-            <li><button><a href="maps.html">Mapa <img class="icone" src="images/map (1)l.png"></a></button></li>
-            <li><button><a href="add_posto.html">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
-            
+           <li><button><a href="maps.php">Mapa <img class="icone" src="images/map (1)l.png"></a></button></li>
+            <li><button><a href="add_posto.php">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
+            <li><button><a href="posto_info.php">Info Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
+        
+        
         </ul>
+        <button><a href="index.php">Sair&nbsp;<img class="icone" src="images/logoutl.png"></a></button>
     </nav>
         <br><br><br><br><br><br>
         <form id="logingform">
-            <label>Usuário</label><br>
-            <input type="text" placeholder="Digite seu Usuário" required><br><br>
             <label>Email</label><br>
             <input type="email" placeholder="Digite seu Email" required><br><br>
             <label>Senha</label><br>
             <input type="password" placeholder="***" required><br><br>
-            <label>Confirmar Senha</label><br>
-            <input type="password" placeholder="***" required><br><br>
-            <input type="button" value="Cadastrar" id="botao">
-        </form>
+            <input type="button" value="Entrar" id="botao">
+        </form><br>
+        <label>Não tem uma Conta?</label><br>
+        <a href="cadastro.php" style="color: #F97316;">Cadastre-se</a>
         </div>
 
     <div class="col-md-9">

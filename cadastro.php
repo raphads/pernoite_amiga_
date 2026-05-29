@@ -12,7 +12,6 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
 </head>
 
 <body>
@@ -24,26 +23,23 @@
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav class="sidebar" id="sidebar">
         <ul>
-            <li><button><a href="index.html">Início</a></button></li>
-            <li><button><a href="maps.html">Mapa <img class="icone" src="images/map (1)l.png"></a></button></li>
-            <li><button><a href="add_posto.html">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
-            <li><button><a href="posto_info.html">Info Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
-           
+           <li><button><a href="maps.php">Mapa <img class="icone" src="images/map (1)l.png"></a></button></li>
+            <li><button><a href="add_posto.php">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
             
         </ul>
-        <button><a href="posto_info.html">Sair&nbsp;<img class="icone" src="images/logoutl.png"></a></button>
-            
     </nav>
         <br><br><br><br><br><br>
-        <form id="logingform">
+        <form id="logingform" method="post" action="cadastrar_conta.php">
+            <label>Usuário</label><br>
+            <input type="text" placeholder="Digite seu Usuário" required name="nome"><br><br>
             <label>Email</label><br>
-            <input type="email" placeholder="Digite seu Email" required><br><br>
+            <input type="email" placeholder="Digite seu Email" required name="email"><br><br>
             <label>Senha</label><br>
-            <input type="password" placeholder="***" required><br><br>
-            <input type="button" value="Entrar" id="botao">
-        </form><br>
-        <label>Não tem uma Conta?</label><br>
-        <a href="cadastro.html" style="color: #F97316;">Cadastre-se</a>
+            <input type="password" placeholder="***" required id="senha1"><br><br>
+            <label>Confirmar Senha</label><br>
+            <input type="password" placeholder="***" required id="senha2" onchange="Confirmar()" name="senha"><br><br>
+             <button type="submit" id="botao" onClick="document.form.action='cadastrar_conta.php'">Cadastrar</button>
+        </form>
         </div>
 
     <div class="col-md-9">

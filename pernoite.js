@@ -22,3 +22,38 @@ function horario(){
          //document.getElementById("tempo").disabled = false;
      }
 }
+
+function Confirmar(){
+     if (document.getElementById("senha2").value != document.getElementById("senha1").value){
+          alert("Senhas não conferem");
+     }
+}
+
+$(document).ready(function(){
+    $('#cpf').inputmask('999.999.999-99'); // Máscara para CPF
+    $('#email').inputmask('aaa@aaa.com'); // Máscara para email
+    $('#telefone').inputmask('(99)99999-9999'); // Máscara para Telefone
+    $('#cep').inputmask('99999-999'); // Máscara para CEP
+    $('#lati').inputmask('-99.9999');
+     $('#long').inputmask('-99.9999');
+
+
+
+$('#cep').on('blur', function() {
+        var cep = $(this).val().replace(/\D/g, '');
+        if (cep.length === 8) {
+            $.getJSON(`https://viacep.com.br/ws/${cep}/json/`, function(data) {
+                if (!("erro" in data)) {
+                    $('#rua').val(data.logradouro);
+                    $('#bairro').val(data.bairro);
+                    $('#cidade').val(data.localidade);
+                    $('#estado').val(data.uf);
+                } else {
+                    alert("CEP não encontrado.");
+                    document.getElementById("cep").value="";
+                    document.getElementById("cep").focus();
+                }
+            });
+        }
+    });	
+});
