@@ -60,7 +60,7 @@
                     </div>
                 
             
-            <div class="col-md-4"><input type="file" name="fileToUpload" id="fileToUpload" multiple name="caminho" style="display: none"><label for="fileToUpload"><img src="images/cameraplus.png" id="foto-perfil" style="height: 100px; width: 100px; background-color: rgb(157, 156, 156);" ></label></div>
+            <div class="col-md-4"><input type="file" name="fileToUpload" id="fileToUpload" multiple style="display: none"><label for="fileToUpload"><img src="images/cameraplus.png" id="foto-perfil" style="height: 100px; width: 100px; background-color: rgb(157, 156, 156);" ></label></div>
 </div>            
 <div class="row">
            <div class="col-md-4">
@@ -112,7 +112,7 @@
         <textarea cols="25" rows="5" name="obs" maxlength="250"></textarea>
     </div>
     <div class="col-md-4"><br>
-        <input type="button" value="Cadastrar" id="botao">
+        <input type="submit" value="Cadastrar" id="botao">
     </div>
     <div class="col-md-4">
         
