@@ -6,16 +6,42 @@
         <link rel="icon" href="images/iconlogo.png">
         <link rel="stylesheet" type="text/css" href="./style.css" />
         <script type="module" src="./index.js"></script>
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6myHzS10YXdcazAFalmXvDkrYCp5cLc8&libraries=maps,marker&v=weekly&internal_usage_attribution_ids=gmp_git_jsapisamples_v1_web-components"
-            defer></script>
+     
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+ <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 500px; width: 80%; margin: auto; border: 2px solid #ccc; border-radius: 10px; }
+    </style>
     </head>
     <body>
+        
+<?php
+    include "conexao.php"; // conexão com o banco
+
+    $sql = "SELECT p.id_posto, p.nome_posto, p.latitude, p.longitude, 
+               GROUP_CONCAT(f.caminho) AS fotos
+        FROM tb_posto p
+        LEFT JOIN fotos_postos f ON p.id_posto = f.id_posto
+        GROUP BY p.id_posto";
+$resultado = mysqli_query($conecta_db, $sql);
+
+$postos = [];
+while ($linha = mysqli_fetch_assoc($resultado)) {
+    $postos[] = [
+        "id" => $linha['id_posto'],
+        "nome" => $linha['nome_posto'],
+        "lat" => (float)$linha['latitude'],
+        "lng" => (float)$linha['longitude'],
+        "fotos" => explode(",", $linha['fotos'])
+    ];
+}
+?>
+
         <div class="container-fluid">
             <div class="row">
-               
+               <h3>Mapa dos Postos</h3>
+                <div id="map"></div>
+
             </div>
             <div class="row">
                 
@@ -33,5 +59,81 @@
             </div>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+    <!-- Script do Leaflet -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    // Criação do mapa
+    var map = L.map('map').setView([-23.66, -46.46], 10); // ajuste para sua região
+
+    // Camada do OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Dados vindos do PHP
+    var postosMapa = <?php echo json_encode($postos, JSON_UNESCAPED_UNICODE); ?>;
+
+    // Loop para adicionar marcadores
+    postosMapa.forEach(function(p) {
+        L.marker([p.lat, p.lng])
+         .addTo(map)
+         .bindPopup(p.nome);
+    });
+
+    postosMapa.forEach(function(p) {
+    var popupContent = "<a href='posto.php?id=" + p.id + "'><b>" + p.nome + "</b></a><br>";
+    if (p.fotos) {
+        p.fotos.forEach(function(foto) {
+            popupContent += "<img src='" + foto + "' width='100' style='margin:5px'>";
+        });
+    }
+    L.marker([p.lat, p.lng]).addTo(map).bindPopup(popupContent);
+});
+
+    navigator.geolocation.getCurrentPosition(function(pos) {
+    var centroLat = pos.coords.latitude;
+    var centroLng = pos.coords.longitude;
+    map.setView([centroLat, centroLng], 13);
+
+    // Exibir todos inicialmente
+    atualizarMapa(centroLat, centroLng, 50); // exemplo: raio inicial 50 km
+});
+
+
+function calcularDistancia(lat1, lon1, lat2, lon2) {
+    var R = 6371; // km
+    var dLat = (lat2 - lat1) * Math.PI / 180;
+    var dLon = (lon2 - lon1) * Math.PI / 180;
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    return R * c;
+}
+
+var markersLayer = L.layerGroup().addTo(map);
+
+function atualizarMapa(centroLat, centroLng, raio) {
+    markersLayer.clearLayers();
+    postosMapa.forEach(function(p) {
+        var distancia = calcularDistancia(centroLat, centroLng, p.lat, p.lng);
+        if (distancia <= raio) {
+            var popupContent = "<b>" + p.nome + "</b><br>";
+            if (p.fotos) {
+                p.fotos.forEach(function(foto) {
+                    popupContent += "<img src='" + foto + "' width='100'>";
+                });
+            }
+            L.marker([p.lat, p.lng]).addTo(markersLayer).bindPopup(popupContent);
+        }
+    });
+}
+
+document.getElementById("botao").addEventListener("click", function() {
+    var raio = parseFloat(document.querySelector("input[placeholder='Digite o raio de Busca']").value);
+    atualizarMapa(centroLat, centroLng, raio);
+});
+</script>
+</body>
+
 </html>
