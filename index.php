@@ -21,24 +21,14 @@
 <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-        <nav class="sidebar" id="sidebar">
-        <ul>
-           <li><button><a href="maps.php">Mapa <img class="icone" src="images/map (1)l.png"></a></button></li>
-            <li><button><a href="add_posto.php">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
-            <li><button><a href="posto_info.php">Info Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
-        
-        
-        </ul>
-        <button><a href="index.php">Sair&nbsp;<img class="icone" src="images/logoutl.png"></a></button>
-    </nav>
+   
         <br><br><br><br><br><br>
-        <form id="logingform">
+        <form id="logingform" method="post"  action="realizar_login.php">
             <label>Email</label><br>
-            <input type="email" placeholder="Digite seu Email" required><br><br>
+            <input type="email" placeholder="Digite seu Email" name="txt_email" required><br><br>
             <label>Senha</label><br>
-            <input type="password" placeholder="***" required><br><br>
-            <input type="button" value="Entrar" id="botao">
+            <input type="password" placeholder="***" name="txt_senha" required><br><br>
+            <input type="submit" value="Entrar" id="botao">
         </form><br>
         <label>Não tem uma Conta?</label><br>
         <a href="cadastro.php" style="color: #F97316;">Cadastre-se</a>

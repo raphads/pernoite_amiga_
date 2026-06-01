@@ -20,14 +20,7 @@
 <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-        <nav class="sidebar" id="sidebar">
-        <ul>
-           <li><button><a href="maps.php">Mapa <img class="icone" src="images/map (1)l.png"></a></button></li>
-            <li><button><a href="add_posto.php">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
-            
-        </ul>
-    </nav>
+        
         <br><br><br><br><br><br>
         <form id="logingform" method="post" action="cadastrar_conta.php">
             <label>Usuário</label><br>
@@ -40,6 +33,7 @@
             <input type="password" placeholder="***" required id="senha2" onchange="Confirmar()" name="senha"><br><br>
              <button type="submit" id="botao" onClick="document.form.action='cadastrar_conta.php'">Cadastrar</button>
         </form>
+        <a href="index.php" style="color: #F97316;">Voltar</a>
         </div>
 
     <div class="col-md-9">
