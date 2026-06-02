@@ -1,4 +1,13 @@
 <?php
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
+
+<?php
 include "conexao.php";
 
 date_default_timezone_set('America/Sao_Paulo');
@@ -80,7 +89,7 @@ $comentarios = $stmt->get_result();
             <li><button><a href="add_posto.php">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
             
             
-        </ul>
+        </ul><button><a href="logout.php">Sair&nbsp;<img class="icone" src="images/logoutl.png"></a></button>
     </nav>
 
       </div>

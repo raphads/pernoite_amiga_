@@ -23,18 +23,7 @@
     <div class="container-fluid">
 <div class="row">
       <div class="col-md-4">
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-        <nav class="sidebar" id="sidebar">
-        <ul>
-            <li><button><a href="index.html">Início</a></button></li>
-            <li><button><a href="maps.html">Mapa <img class="icone" src="images/map (1)l.png"></a></button></li>
-            <li><button><a href="add_posto.html">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
-            
-            
-        </ul>
-    </nav>
-
-      </div>
+<?php include "menu.php"; ?>
         <div class="col-md-4">
             <h2>Informações do Posto</h2>
         </div>

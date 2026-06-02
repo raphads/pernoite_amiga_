@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 
 <html>
@@ -24,12 +33,12 @@
         <div class="col-md-4"><div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav class="sidebar" id="sidebar">
         <ul>
-            <li><button><a href="index.php">Início</a></button></li>
             <li><button><a href="maps.php">Mapa <img class="icone" src="images/map (1)l.png"></a></button></li>
             <li><button><a href="add_posto.php">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></li>
             
             
         </ul>
+        <button><a href="index.php">Sair&nbsp;<img class="icone" src="images/logoutl.png"></a></button>
     </nav>
 </div>
         <div class="col-md-4">

@@ -35,6 +35,7 @@ if($user == "admin@pernoite.com" && $senha == "@Admin1234"){
 	echo "<br>";
     $row = $result->fetch_assoc();
     $_SESSION['usuario_id'] = $row['id'];
+    $_SESSION['usuario'] = $row['email_user'];
     header('location:maps.php');
 } else {
     echo "<center>";

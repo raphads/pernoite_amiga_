@@ -1,12 +1,22 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
         <title>Mapa</title>
         <link rel="icon" href="images/iconlogo.png">
-        <link rel="stylesheet" type="text/css" href="./style.css" />
-        <script type="module" src="./index.js"></script>
-     
+        <link rel="stylesheet" href="style.css">
+    <script src="pernoite.js"></script>
+    <script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
@@ -39,6 +49,9 @@ while ($linha = mysqli_fetch_assoc($resultado)) {
 
         <div class="container-fluid">
             <div class="row">
+        
+    <div class="col-md-4"></div>
+    
                <h3>Mapa dos Postos</h3>
                 <div id="map"></div>
 
@@ -46,6 +59,7 @@ while ($linha = mysqli_fetch_assoc($resultado)) {
             <div class="row">
                 
                 <div class="col-md-4">
+                    
                      <br>
                  <label>Raio</label>&nbsp;&nbsp;<input type="Text" placeholder="Digite o raio de Busca" required>
                  </div>
