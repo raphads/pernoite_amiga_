@@ -116,3 +116,29 @@ img{
 input, textarea{
     border-radius: 10px;
 }
+
+#carouselPreview .carousel-item img {
+  width: 100px;   /* mesmo tamanho do placeholder */
+  height: 100px;
+  object-fit: cover; /* corta excesso sem distorcer */
+}
+#carouselPreview .carousel-control-prev-icon,
+#carouselPreview .carousel-control-next-icon {
+  width: 20px;   /* largura menor */
+  height: 20px;  /* altura menor */
+  background-size: 100% 100%; /* redimensiona o ícone */
+    
+}
+#carouselPreview .carousel-control-prev,
+#carouselPreview .carousel-control-next {
+  height: 50px;   /* reduz área clicável */
+    display: none; /* escondidas por padrão */
+}
+
+
+#carouselPreview {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+    

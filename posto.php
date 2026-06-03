@@ -56,6 +56,29 @@ $stmt->bind_param("i", $posto_id);
 $stmt->execute();
 $comentarios = $stmt->get_result();
 */
+// Inserir comentário
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['texto'])) {
+    $id_user = $_SESSION['usuario_id'];
+    $texto = $_POST['texto'];
+
+$id_user = $_SESSION['usuario_id']; // esse valor deve ser o id_user do cadastro
+$stmt = $conecta_db->prepare("INSERT INTO tb_comentarios (id_user, id_posto, texto) VALUES (?, ?, ?)");
+$stmt->bind_param("iis", $id_user, $posto_id, $texto);
+$stmt->execute();
+
+}
+
+// Buscar comentários
+$stmt = $conecta_db->prepare("SELECT c.texto, c.data_comentario, u.name_user, u.email_user
+                              FROM tb_comentarios c
+                              JOIN tb_cadastro u ON c.id_user = u.id_user
+                              WHERE c.id_posto = ?
+                              ORDER BY c.data_comentario DESC");
+$stmt->bind_param("i", $posto_id);
+$stmt->execute();
+$comentarios = $stmt->get_result();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -125,8 +148,32 @@ $comentarios = $stmt->get_result();
     <span class="visually-hidden">Próximo</span>
   </button>
 </div>
+</div>
+<div class="col-md-4">
 
-<div class="col-md-4"></div>
-    
+<!-- Formulário de Comentários -->
+<h2>Deixe seu comentário</h2>
+<form method="post" action="">
+    <textarea name="texto" class="form-control" rows="3" required></textarea><br>
+    <button type="submit">Enviar</button>
+</form>
+
+<!-- Lista de Comentários -->
+<h2>Comentários</h2>
+<?php while($c = $comentarios->fetch_assoc()) { ?>
+    <div class="card mb-2">
+        <div class="card-body">
+            <p><?php echo nl2br(htmlspecialchars($c['texto'])); ?></p>
+            <small>
+                Por <strong><?php echo $c['email_user']; ?></strong> 
+                em <?php echo date("d/m/Y H:i", strtotime($c['data_comentario'])); ?>
+            </small>
+        </div>
+    </div>
+<?php } ?>
+
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

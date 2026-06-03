@@ -52,7 +52,12 @@ while ($linha = mysqli_fetch_assoc($resultado)) {
         
     <div class="col-md-4"></div>
     
-               <h3>Mapa dos Postos</h3>
+               <h3>Mapa dos Postos</h3><nav><button><a  style="color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 1.2rem;
+    padding: 10px;
+    transition: background-color 0.3s ease;" href="add_posto.php">Adicionar Posto&nbsp;<img class="icone" src="images/gas-stationl.png"></a></button></nav>
                 <div id="map"></div>
 
             </div>

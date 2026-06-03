@@ -22,6 +22,7 @@ if (!isset($_SESSION['usuario'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>
    
 
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -69,8 +70,29 @@ if (!isset($_SESSION['usuario'])) {
                     </div>
                 
             
-            <div class="col-md-4"><input type="file" name="fileToUpload" id="fileToUpload" multiple style="display: none"><label for="fileToUpload"><img src="images/cameraplus.png" id="foto-perfil" style="height: 100px; width: 100px; background-color: rgb(157, 156, 156);" ></label></div>
-</div>            
+<div class="col-md-4">
+  <input type="file" name="fileToUpload[]" id="fileToUpload" multiple style="display: none">
+  <label for="fileToUpload" style="display:inline-block; width:10px; height:10px; cursor:pointer; ">
+    <img src="images/cameraplus.png" id="foto-placeholder" style="height: 100px; width: 100px; background-color: rgb(157, 156, 156); object-fit: cover;">
+  
+   
+
+</label>
+ <!-- Carrossel de pré-visualização -->
+  <div id="carouselPreview" class="carousel slide mt-3" data-bs-ride="carousel" style="width:100px; height:100px;">
+    <div class="carousel-inner" id="carousel-inner"></div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPreview" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselPreview" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Próximo</span>
+    </button>
+  </div>
+  
+</div>
+          
 <div class="row">
            <div class="col-md-4">
                 <label>Latitude</label><br>
@@ -136,17 +158,39 @@ if (!isset($_SESSION['usuario'])) {
 
 <script>
   const inputFoto = document.getElementById('fileToUpload');
-  const fotoPerfil = document.getElementById('foto-perfil');
+  const carouselInner = document.getElementById('carousel-inner');
+  const placeholder = document.getElementById('foto-placeholder');
 
   inputFoto.addEventListener('change', function(event) {
-    const arquivo = event.target.files[0]; // Pega o arquivo selecionado
-    
-    if (arquivo) {
-      // Substitui o src da imagem antiga pela nova imagem selecionada
-      fotoPerfil.src = URL.createObjectURL(arquivo);
+    carouselInner.innerHTML = ""; // limpa imagens anteriores
+    const arquivos = event.target.files;
+
+    if (arquivos.length > 0) {
+      placeholder.style.display = "none"; // esconde o placeholder
+    }
+
+        document.querySelector('#carouselPreview .carousel-control-prev').style.display = "block";
+    document.querySelector('#carouselPreview .carousel-control-next').style.display = "block";
+
+    for (let i = 0; i < arquivos.length; i++) {
+      const arquivo = arquivos[i];
+      if (arquivo.type.startsWith("image/")) {
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(arquivo);
+        img.className = "d-block w-100 h-100"; // ocupa todo espaço do carrossel
+        img.style.objectFit = "cover";        // mantém proporção sem distorcer
+
+        const item = document.createElement("div");
+        item.className = "carousel-item";
+        if (i === 0) item.classList.add("active"); // primeira imagem ativa
+        item.appendChild(img);
+
+        carouselInner.appendChild(item);
+      }
     }
   });
 </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>
