@@ -155,7 +155,7 @@ $comentarios = $stmt->get_result();
 <h2>Deixe seu comentário</h2>
 <form method="post" action="">
     <textarea name="texto" class="form-control" rows="3" required></textarea><br>
-    <button type="submit">Enviar</button>
+    <input type="submit" value="Enviar" id="botao">
 </form>
 
 <!-- Lista de Comentários -->
